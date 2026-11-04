@@ -3,10 +3,10 @@
 //! - sante (capacite conception / pleine charge) via le rapport `powercfg /batteryreport`
 
 use std::fs;
-use std::path::PathBuf;
 use std::process::Command;
 
 #[repr(C)]
+#[allow(dead_code)]
 struct SystemPowerStatus {
     ac_line_status: u8,
     battery_flag: u8,
@@ -211,9 +211,5 @@ fn parse_number_with_unit(s: &str) -> Option<(u64, bool)> {
         }
         i += 1;
     }
-    let _ = start_unused();
     None
 }
-
-#[allow(dead_code)]
-fn start_unused() {}

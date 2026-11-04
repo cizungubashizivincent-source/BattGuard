@@ -220,7 +220,7 @@ impl BattApp {
                         ui.label("Estimation fournie par Windows");
                     } else if let Some(rate) = self.rate_pct_per_min() {
                         if rate < -0.01 {
-                            let secs = (self.live.percent / (-rate) * 60.0) as u64;
+                            let secs = (self.live.percent as f64 / (-rate) * 60.0) as u64;
                             ui.label(egui::RichText::new(fmt_duration(secs)).size(24.0));
                             ui.label("Estime d'apres la tendance de decharge observee");
                         } else {
@@ -256,7 +256,7 @@ impl BattApp {
                         ui.add(
                             egui::ProgressBar::new(pct / 100.0)
                                 .show_percentage()
-                                .filled_color(egui::Color32::from_rgb(
+                                .fill(egui::Color32::from_rgb(
                                     color[0], color[1], color[2],
                                 )),
                         );
